@@ -18,7 +18,7 @@ export default function Chat({ chat, messages }) {
         <div style={{ width: "27vw" }}>
           <Sidebar />
         </div>
-        <div className="chatScreen">
+        <div className="chatScreen"  style={{ width: "70vw", position:"relative", height:'90vh' }}>
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>

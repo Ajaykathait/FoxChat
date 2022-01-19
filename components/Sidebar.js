@@ -42,18 +42,18 @@ export default function Sidebar() {
           Width: "300px",
         }}
       >
-        <h1 style={{ color: "#fff" }}>Sidebar</h1>
-        <div className="userAvatar">
-          <img src={user.photoURL} alt="" />
+        <div style={{ display: "flex", flexDirection: "row", justifyContent:'space-around' }}>
+          <h1 style={{ color: "#fff" }}>Sidebar</h1>
+          <div className="userAvatar">
+            <img src={user.photoURL} alt="" />
+          </div>
         </div>
+
         <button className="logOut" onClick={() => auth.signOut()}>
           LogOut..
         </button>
-
-        <div className="Search">
-          <input type="text" placeholder="Search" />
-        </div>
         <button onClick={createChat}>START A NEW CHAT</button>
+
         {/* list of chats */}
         {chatsSnapshot?.docs.map((chat) => (
           <Chat key={chat.id} id={chat.id} users={chat.data().users} />

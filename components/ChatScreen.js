@@ -10,6 +10,7 @@ import { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import Message from "./Message";
+import getRecipientEmail from "../utils/getRecipientEmail";
 
 export default function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth);
@@ -21,6 +22,12 @@ export default function ChatScreen({ chat, messages }) {
       .doc(router.query.id)
       .collection("messages")
       .orderBy("timestamp", "asc")
+  );
+
+  const [recipientSnapshot] = useCollection(
+    db
+      .collection("users")
+      .where("email", "==", getRecipientEmail(chat.users, user))
   );
 
   const showMessages = () => {
@@ -67,10 +74,54 @@ export default function ChatScreen({ chat, messages }) {
     setInput("");
   };
 
+  const recipient = recipientSnapshot?.docs?.[0]?.data();
+  const recipientEmail = getRecipientEmail(chat.users, user);
+
   return (
     <div>
-      <h1>this is a chat</h1>
-      <div className={styles.text_messages}>{showMessages()}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row-reverse",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#fff",
+          width: "100%",
+          padding: "12px 10px",
+          gap: "10px",
+        }}
+      >
+        <h3
+          style={{
+            color: "#4e426d",
+          }}
+        >
+          {recipientEmail}
+        </h3>
+        <div
+          style={{
+            width: "70px",
+            height: "70px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#cecece",
+            borderRadius: "50%",
+            color:'#4e426d',
+            fontSize:'1.6rem',
+            fontWeight:'600',
+            border:'2px solid #4e426d'
+            ,overflow:'hidden'
+          }}
+        >
+          {recipient ? (
+            <img src={recipient?.photoURL} />
+          ) : (
+            <div>{recipientEmail[0].toUpperCase()}</div>
+          )}
+        </div>
+      </div>
+      <div>{showMessages()}</div>
       <form className={styles.cat_box}>
         <input
           placeholder="Type a message"

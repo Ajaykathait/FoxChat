@@ -4,6 +4,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
+import styles from "/styles/Chat.module.scss";
+
 
 export default function Chat({ id, users }) {
   const router = useRouter();
@@ -19,15 +21,15 @@ export default function Chat({ id, users }) {
   const recipientEmail = getRecipientEmail(users, user);
   return (
     <>
-      <div onClick={enterChat}>
-        <div className="avatar">
+      <div className={styles.single_chat} onClick={enterChat}>
+        <div className={styles.profile}>
           {recipient ? (
             <img src={recipient?.photoURL} />
           ) : (
             <div>{recipientEmail[0]}</div>
           )}
         </div>
-        <h3>{recipientEmail}</h3>
+        <h3 className={styles.user_name}>{recipientEmail}</h3>
       </div>
     </>
   );
