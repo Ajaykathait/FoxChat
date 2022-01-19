@@ -9,8 +9,8 @@ const firebaseConfig = {
   projectId: "foxchat-1680c",
   storageBucket: "foxchat-1680c.appspot.com",
   messagingSenderId: "293520320940",
-  appId: "1:293520320940:web:29371303d9542abed87209",
-  measurementId: "G-CBXJPZWFMT",
+  appId: "1:293520320940:web:a0252843f28a6d83d87209",
+  measurementId: "G-TJFZ79K23D"
 };
 
 const app = !firebase.apps.length
