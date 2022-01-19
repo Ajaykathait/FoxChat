@@ -13,12 +13,14 @@ export default function Chat({ chat, messages }) {
           display: "flex",
           flexDirection: "row",
           width: "100vw",
+          justifyContent:'space-around',
+          padding:'2rem 5px'
         }}
       >
         <div style={{ width: "27vw" }}>
           <Sidebar />
         </div>
-        <div className="chatScreen"  style={{ width: "70vw", position:"relative", height:'90vh' }}>
+        <div className="chatScreen"  style={{ width: "70vw", position:"relative", height:'90vh', backgroundColor:'#5c4f81', padding:'1rem' }}>
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>
