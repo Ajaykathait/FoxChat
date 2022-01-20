@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar"
 import ChatScreen from "../../components/ChatScreen";
-import { async } from "@firebase/util";
 import { db } from "../../firebase";
 
 export default function Chat({ chat, messages }) {
