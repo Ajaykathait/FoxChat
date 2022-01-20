@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/Sidebar"
 import ChatScreen from "../../components/ChatScreen";
 import { async } from "@firebase/util";
 import { db } from "../../firebase";
